@@ -84,7 +84,7 @@ class CMakeBuild(build_ext):
         if is_in_git:
             subprocess.check_call(["git", "submodule", "update", "--init", "--recursive"])
 
-        extdir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
+        extdir = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
         cmake_args = [
             "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=" + extdir,
             "-DPYTHON_EXECUTABLE=" + sys.executable,
@@ -104,7 +104,7 @@ class CMakeBuild(build_ext):
             cmake_args += ["-DCMAKE_BUILD_TYPE=" + cfg]
             build_args += ["--", "-j4"]
 
-        cmake_args += ["-DBULLET_ROOT_PATH={}".format(args.bullet_dir)]
+        # cmake_args += ["-DBULLET_ROOT_PATH={}".format(args.bullet_dir)]
         cmake_args += ["-DBUILD_TEST={}".format("ON" if args.build_tests else "OFF")]
 
         env = os.environ.copy()

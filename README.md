@@ -3,10 +3,11 @@ External rendering for [PyBullet](https://github.com/bulletphysics/bullet3/) sim
 
 ## Install
 
-Install NumPy and PyBullet
+Install NumPy, Trimesh, and PyBullet
 
 ```
 pip3 install numpy
+pip3 install trimesh
 pip3 install pybullet
 ```
 

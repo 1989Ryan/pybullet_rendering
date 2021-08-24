@@ -1,18 +1,18 @@
-import os
+import os, sys
 
 import numpy as np
 import pyrender as pyr
 import trimesh
 from PIL import Image
-
-import pybullet_rendering as pr
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '../'))
+from ..bindings import BaseRenderer
 
 from .utils import decompose, mask_to_rgb, primitive_mesh, rgb_to_mask
 
 __all__ = ('PyrRenderer', 'PyrViewer')
 
 
-class PyrRenderer(pr.BaseRenderer):
+class PyrRenderer(BaseRenderer):
     """Pyrender-based offscreen renderer."""
 
     def __init__(self,
@@ -112,7 +112,7 @@ class PyrRenderer(pr.BaseRenderer):
         return True
 
 
-class PyrViewer(pr.BaseRenderer):
+class PyrViewer(BaseRenderer):
     """Pyrender-based onscreen viewer.
 
     Use for debug purposes only.
@@ -225,7 +225,7 @@ class Scene(pyr.Scene):
                 if shape.mesh is None:
                     mesh = primitive_mesh(shape)
                 elif shape.mesh.data is None:
-                    mesh = trimesh.load(os.path.abspath(shape.mesh.filename))
+                    mesh = trimesh.load(os.path.abspath(shape.mesh.filename), force='mesh')
                 else:
                     data = shape.mesh.data
                     mesh = trimesh.Trimesh(

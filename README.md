@@ -18,7 +18,7 @@ Install the package
 cd ..
 git clone https://github.com/1989Ryan/pybullet_rendering.git
 cd pybullet_rendering
-python setup.py install
+python setup.py install --user
 ```
 
 

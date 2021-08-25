@@ -17,9 +17,10 @@ Install the package
 ```
 git clone https://github.com/1989Ryan/pybullet_rendering.git
 cd pybullet_rendering
-python setup.py install --user
+python3 setup.py install --user
 ```
 
+The package has been checked on the Ubuntu 20.04 system with Python3.8. 
 
 ## Renderers
 
